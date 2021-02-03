@@ -1,0 +1,25 @@
+Testes: Garantir que a Aplicação continue funcionando idependente do <Num de Funcionalidade> ou <Num de Devs>
+
+
+1. Testes Unitários: (TDD):
+    Testes de funcionalidades específicas da aplicação (Precisam ser funcoes Puras)
+    JAMAIS: chamadas a APIs ou efeitos colaterais (envio de email por exemplo)
+
+2 Testes de integração:
+    Testam uma funcionalidade completa, passando por várias camadas da aplicação;
+    REQUEST >> Route -> Controller -> Service -> Repository -> Service -> Controller -> Route >> RESPONSE
+
+
+3. Testes E2E: Testes que simulam a ação do usuário dentro da aplicação
+
+1. Clique no input de email
+2. Preencha "gabriel.estmr@gmail.com"
+3. Clique no input de Senha
+4. Preencha 123456
+5. Clique no botão logar
+.
+.
+.
+
+
+#TDD => Mais voltados para Testes unitários
