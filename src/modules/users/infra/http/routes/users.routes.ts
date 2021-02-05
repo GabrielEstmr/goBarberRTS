@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
 import uploadConfig from '@config/upload';
+import { celebrate, Segments, Joi } from 'celebrate';
 
 // import UsersRepository from '@modules/users/infra/typeorm/Repositories/UserRepository';
 
@@ -20,7 +21,13 @@ import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAut
 const upload = multer(uploadConfig);//funciona como middleware > por isso vai dentro da funcao da rota
 // upload.single('avatar') > nome do campo = avatar
 
-usersRouter.post('/', usersController.create);
+usersRouter.post('/', celebrate({
+    [Segments.BODY]: {
+        name: Joi.string().required(),
+        email: Joi.string().email().required(),
+        password: Joi.string().required(),
+    }
+}), usersController.create);
 
 //PUT > possibilidade de atualizar todos os campos de uma linha/registro
 //PATCH: auteração de apenas UM campo de um registro

@@ -10,9 +10,13 @@ console.clear();
 
 import 'reflect-metadata';
 
+import 'dotenv/config';
+
 import express, { Request, Response, NextFunction } from 'express';
+import { errors } from 'celebrate';
 import 'express-async-errors';//Approuch de Fazer Middlewares de errors > precisa desse pacote
 import cors from 'cors';
+
 
 import routes from './routes';// por default acho que vai no index
 import AppError from '@shared/errors/AppError';
@@ -39,6 +43,7 @@ app.use(express.json());
 //http://localhost:3333/files/ae070f9f4addc7a5c231-CV%20Gabriel%20Rodrigues%20%20-%2027-05-2020.pdf
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
+app.use(errors());//tem que ser o ultimo!!!
 
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
